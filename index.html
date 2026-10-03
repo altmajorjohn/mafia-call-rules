@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mafia Call — Rulebook</title>
+<meta name="description" content="How to play Mafia Call: the rules and every role." />
+<meta name="theme-color" content="#16110f" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Sofia+Sans+Extra+Condensed:wght@700;800;900&family=Sofia+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--velour:#16110f;--velour2:#231b17;--chalk:#f1eadf;--dim:#b9ab98;--yellow:#f2d338;--congo:#1b1561;--glow:#c9f7a8;--straw:#f3d7a0;--straw-ink:#2a190b;--rose:#b0204f;--rose-ink:#fff0f4;--house:#f4eee3;--house-ink:#1d1611;--oxblood:#6e1220;
+--display:"Sofia Sans Extra Condensed","Arial Narrow",sans-serif;--ui:"Sofia Sans",system-ui,sans-serif;--marker:"Permanent Marker",cursive}
+*{box-sizing:border-box}
+html{background:var(--velour);color:var(--chalk);font-family:var(--ui);scroll-behavior:smooth}
+body{margin:0;line-height:1.55}
+::selection{background:var(--glow);color:#10220d}
+a{color:var(--yellow)}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.9;margin:0}
+.tape{display:inline-block;background:var(--c,#ece9e2);color:#17110c;font-family:var(--marker);padding:.35em .7em .25em;transform:rotate(var(--r,-1.5deg));clip-path:polygon(1% 0,99% 4%,100% 96%,0 100%)}
+/* sections = lighting cues */
+section{padding:72px 0}
+.gel-night{background:var(--congo);color:#e4e0ff}
+.gel-dawn{background:var(--straw);color:var(--straw-ink)}
+.gel-rose{background:var(--rose);color:var(--rose-ink)}
+.gel-house{background:var(--house);color:var(--house-ink)}
+.gel-house a,.gel-dawn a{color:#8f1a2c}
+section h2{font-size:clamp(2.6rem,7vw,4.6rem);margin-bottom:22px}
+section p{max-width:68ch}
+.lead{font-size:1.15rem}
+/* hero */
+header{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;left:50%;bottom:-24vh;width:120vw;max-width:1300px;aspect-ratio:2;transform:translateX(-50%);border-radius:50%;background:#2c2119;z-index:0}
+header .wrap{position:relative;z-index:1}
+.made{font-family:var(--display);font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);font-size:1rem;margin:0 0 14px}
+.logos{display:flex;gap:40px;align-items:center;flex-wrap:wrap;margin-bottom:56px}
+.logos img{height:clamp(54px,9vw,88px);width:auto}
+.hero-title{font-size:clamp(4rem,14vw,10rem);line-height:.82;margin:0 0 20px}
+.hero-title span{color:var(--yellow)}
+.hero-sub{font-size:1.25rem;color:var(--dim);max-width:52ch;margin:0 0 28px}
+.cta{display:inline-flex;align-items:center;min-height:56px;padding:0 24px;border-radius:12px;background:var(--chalk);color:#17110c;font-weight:800;text-decoration:none;margin-right:12px}
+.cta.alt{background:transparent;border:2px solid var(--dim);color:var(--chalk)}
+nav.toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+nav.toc a{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;color:var(--chalk);border:2px solid #3e322a;border-radius:8px;padding:6px 12px}
+/* steps */
+.steps{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.steps li{background:rgba(0,0,0,.18);border-radius:14px;padding:18px}
+.gel-dawn .steps li,.gel-house .steps li{background:rgba(255,255,255,.45)}
+.steps b{display:block;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:1.6rem;line-height:1;margin-bottom:6px}
+.steps .t{font-family:var(--display);font-weight:800;font-size:1rem;opacity:.75;letter-spacing:.05em}
+.callout{border-radius:14px;padding:16px 18px;margin:20px 0;max-width:72ch;background:rgba(0,0,0,.2)}
+.gel-dawn .callout{background:rgba(255,255,255,.5)}
+.glow{color:var(--glow)}
+/* roles */
+.roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:28px}
+.role{border-radius:16px;padding:20px;background:var(--velour2);position:relative;overflow:hidden;min-height:210px}
+.role h3{font-size:2.4rem;margin:8px 0 10px}
+.role p{margin:0 0 8px}
+.role .side{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.95rem;opacity:.85}
+.role svg{position:absolute;right:-14px;bottom:-14px;width:120px;height:120px;opacity:.18}
+.evil{background:var(--oxblood);color:#fbe9e4}
+.wolf{background:#3b2a1a}.yak{background:#14213a}.sk{background:#2b2b2b}.cult{background:#3a1846}
+.doc{background:#17423a}.det{background:#1d3459}.hunt{background:#1f3d24}.cupid{background:#5a1d3d}.tan{background:#4a3a1c}
+/* table */
+.tbl{overflow-x:auto;margin-top:22px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-variant-numeric:tabular-nums}
+th,td{text-align:center;padding:9px 8px;border-bottom:2px dotted #c9b9a4}
+th{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:1rem}
+td:first-child,th:first-child{text-align:left;font-weight:800}
+.wins{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:20px}
+.wins li{background:rgba(0,0,0,.18);border-radius:12px;padding:14px 16px}
+.wins b{font-family:var(--display);font-size:1.4rem;text-transform:uppercase;display:block}
+footer{padding:48px 0 64px;color:var(--dim);text-align:center}
+footer .logos{justify-content:center;margin:16px 0 0}
+footer .logos img{height:52px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="mafia" viewBox="0 0 48 48"><path fill="currentColor" fill-rule="evenodd" d="M4 18c6-4 13-5 20-2 7-3 14-2 20 2-1 9-6 15-13 15-3 0-5-1-7-4-2 3-4 4-7 4C10 33 5 27 4 18Zm9 4c2 3 5 3 7 1-2-2-5-3-7-1Zm22 0c-2-2-5-1-7 1 2 2 5 2 7-1Z"/></symbol>
+<symbol id="wolf" viewBox="0 0 48 48"><path fill="currentColor" d="M6 6l10 10 8-4 8 4 10-10-2 18-6 6-4 12-6-6-6 6-4-12-6-6z"/></symbol>
+<symbol id="yak" viewBox="0 0 48 48"><path d="M24 3 45 24 24 45 3 24z" fill="none" stroke="currentColor" stroke-width="5"/><path fill="currentColor" d="M9 39 39 9l3 3-30 30z"/></symbol>
+<symbol id="sk" viewBox="0 0 48 48"><path fill="currentColor" d="M40 4 44 8 20 32l-4-4zM16 28l4 4-6 6 3 3-3 3-9-9 3-3 3 3z"/></symbol>
+<symbol id="cult" viewBox="0 0 48 48"><path d="M24 4 45 42H3z" fill="none" stroke="currentColor" stroke-width="5"/><ellipse fill="currentColor" cx="24" cy="30" rx="8" ry="5"/></symbol>
+<symbol id="doc" viewBox="0 0 48 48"><path fill="currentColor" d="M19 6h10v13h13v10H29v13H19V29H6V19h13z"/></symbol>
+<symbol id="det" viewBox="0 0 48 48"><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="5"/><path d="m29 29 12 12" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></symbol>
+<symbol id="hunt" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="5"><circle cx="24" cy="24" r="16"/><path d="M24 2v14M24 32v14M2 24h14M32 24h14"/></g></symbol>
+<symbol id="cupid" viewBox="0 0 48 48"><path fill="currentColor" d="M24 43 6 25C0 18 4 7 13 7c5 0 9 3 11 7 2-4 6-7 11-7 9 0 13 11 7 18z"/></symbol>
+<symbol id="tan" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"><circle cx="24" cy="24" r="19"/><path d="M15 35c5-6 13-6 18 0M16 18h4M28 18h4"/></g></symbol>
+<symbol id="vil" viewBox="0 0 48 48"><path fill="currentColor" d="M24 5 4 22h6v21h11V31h6v12h11V22h6z"/></symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap">
+    <p class="made">Made by</p>
+    <div class="logos">
+      <img src="brand/muqecha.png" alt="Muqecha Studios" />
+      <img src="brand/efuye-gela.png" alt="Chewata Awaqi" />
+    </div>
+    <h1 class="hero-title">Mafia Call<br /><span>Rulebook</span></h1>
+    <p class="hero-sub">Mafia for groups already on a video call or a live stream. Your phone holds your secret role and your ballot. A shared board narrates the game, so nobody has to moderate.</p>
+    <a class="cta" href="https://mafia-call.netlify.app">Play now</a>
+    <a class="cta alt" href="#roles">See the roles</a>
+    <nav class="toc" aria-label="Contents">
+      <a href="#setup">Setup</a><a href="#night">Night</a><a href="#day">Day</a><a href="#roles">Roles</a><a href="#table">Who's in the game</a><a href="#win">Winning</a><a href="#tips">Etiquette</a>
+    </nav>
+  </div>
+</header>
+
+<section id="setup">
+  <div class="wrap">
+    <h2>Setup</h2>
+    <ol class="steps">
+      <li><b>1 · Host</b>One person opens the site and taps <em>Host a new game</em>. That opens the <strong>board</strong>. Share that screen on the call, with computer sound on, so everyone hears the narrator.</li>
+      <li><b>2 · Join</b>Everyone else opens the link or room code shown on the board and signs in with a nickname. You need 4–30 players.</li>
+      <li><b>3 · Read your part</b>Press and hold the card on your phone to read your secret role. Don't let anyone see your screen.</li>
+    </ol>
+    <p class="callout">Only a few people? The host can turn on <strong>Test mode</strong> to fill the empty seats with bots. A TEST MODE banner then shows on every screen.</p>
+  </div>
+</section>
+
+<section id="night" class="gel-night">
+  <div class="wrap">
+    <h2 class="glow">Night</h2>
+    <p class="lead"><strong>Cameras and mics off.</strong> <em>Every</em> living player taps a name on their phone, every night, including night 1. The night always runs its full 45 seconds.</p>
+    <p>Why everyone taps: on a call, whoever is busy on their phone at night would give their role away. So villagers make a pick too (who they suspect), and every phone looks exactly the same. Hold <strong>Hold for your cue</strong> to read what your own pick does tonight.</p>
+    <ul class="steps">
+      <li><b>Gangs strike</b>Each gang (Mafia, Werewolves, Yakuza) kills the player most of its members picked. Ties are broken at random. Picks on your own team don't count.</li>
+      <li><b>Biggest strikes first</b>Attacks land biggest group first. A group that was wiped out earlier that night doesn't get to strike.</li>
+      <li><b>Saves and conversions</b>A Doctor's protection blocks every attack. After the kills, the cult converts its pick.</li>
+      <li><b>Team chat</b>Mafia, Werewolves, Yakuza and Cultists can whisper with their own team in <strong>Notes</strong>, at night only. Nobody else can read it.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="day" class="gel-dawn">
+  <div class="wrap">
+    <h2>Day</h2>
+    <ol class="steps">
+      <li><b>Dawn</b><span class="t">12s</span><br />The board announces who died and, if the host's setting is on, their role. A <em>Still standing</em> count shows how many of each role are alive.</li>
+      <li><b>Discuss</b><span class="t">2 min</span><br />Cameras on. Accuse, defend, bluff, all on the call.</li>
+      <li><b>Nominate</b><span class="t">30s</span><br />Nominate someone on your phone. Anyone with <strong>2 nominations</strong> goes on trial, up to 3 players.</li>
+      <li><b>Vote</b><span class="t">20s</span><br />Vote for someone on trial, or abstain. <strong>Whoever gets the most votes is out.</strong> If the top spot is tied, nobody is eliminated.</li>
+      <li><b>Verdict</b><span class="t">25s</span><br />Ballots are revealed one by one on the board. The eliminated player gets last words.</li>
+    </ol>
+    <p class="callout"><strong>Dead players are ghosts.</strong> Stay silent on the call (and on stream). Ghosts don't see anyone else's role. Everything is revealed at the end.</p>
+  </div>
+</section>
+
+<section id="roles">
+  <div class="wrap">
+    <h2>The roles</h2>
+    <div class="roles">
+      <article class="role evil"><span class="side">Mafia · team</span><h3>Mafia</h3><p>Each night, agree with your crew on someone to kill. Whisper with them in Notes. By day, blend in.</p><svg><use href="#mafia"/></svg></article>
+      <article class="role wolf"><span class="side">Werewolves · rival gang</span><h3>Werewolf</h3><p>A separate pack with its own kill and its own chat. Werewolves don't know who the Mafia are. Outlast everyone to win.</p><svg><use href="#wolf"/></svg></article>
+      <article class="role yak"><span class="side">Yakuza · rival gang</span><h3>Yakuza</h3><p>A third crime family that kills, plots and wins alone.</p><svg><use href="#yak"/></svg></article>
+      <article class="role sk"><span class="side">Alone</span><h3>Serial Killer</h3><p>Kills one player each night. Wins by being the last one standing.</p><svg><use href="#sk"/></svg></article>
+      <article class="role cult"><span class="side">Cult · team</span><h3>Cultist</h3><p>Each night the cult picks someone to convert; it happens silently. Killers can't be converted. The cult wins when everyone alive has joined.</p><svg><use href="#cult"/></svg></article>
+      <article class="role doc"><span class="side">Town</span><h3>Doctor</h3><p>Protect one player each night from any attack, yourself included, but not the same player two nights in a row.</p><svg><use href="#doc"/></svg></article>
+      <article class="role det"><span class="side">Town</span><h3>Detective</h3><p>Investigate one player each night. At dawn you privately learn their side: innocent, Mafia, Werewolf, Yakuza, Cult or Serial Killer.</p><svg><use href="#det"/></svg></article>
+      <article class="role hunt"><span class="side">Town</span><h3>Cult Hunter</h3><p>Hunt one player each night: if they're a Cultist, they die. If the cult ever goes after you, its newest member dies instead.</p><svg><use href="#hunt"/></svg></article>
+      <article class="role cupid"><span class="side">Town</span><h3>Cupid</h3><p>On night 1, whoever you pick falls in love with you. Lovers learn each other's names, not roles. If one dies, so does the other. Lovers win together if they're the last two standing, or alongside the winning side.</p><svg><use href="#cupid"/></svg></article>
+      <article class="role tan"><span class="side">Alone</span><h3>Tanner</h3><p>Hates life. Wins, alone, if the town votes them out, and everyone else loses. Reads as innocent to the Detective.</p><svg><use href="#tan"/></svg></article>
+      <article class="role"><span class="side">Town</span><h3>Villager</h3><p>No power. Find the killers and vote them out. At night, pick who you suspect.</p><svg><use href="#vil"/></svg></article>
+    </div>
+  </div>
+</section>
+
+<section id="table" class="gel-house">
+  <div class="wrap">
+    <h2>Who's in the game</h2>
+    <p>Roles are added as the room grows. Everyone left over is a Villager.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Players</th><th>Mafia</th><th>Werewolves</th><th>Yakuza</th><th>Serial Killer</th><th>Cult + Hunter</th><th>Doctors</th><th>Detectives</th><th>Cupid</th><th>Tanner</th></tr></thead>
+      <tbody>
+        <tr><td>4–5</td><td>1</td><td>–</td><td>–</td><td>–</td><td>–</td><td>1</td><td>–</td><td>–</td><td>–</td></tr>
+        <tr><td>6</td><td>1</td><td>–</td><td>–</td><td>1</td><td>–</td><td>1</td><td>1</td><td>–</td><td>–</td></tr>
+        <tr><td>7</td><td>2</td><td>–</td><td>–</td><td>–</td><td>–</td><td>1</td><td>1</td><td>–</td><td>–</td></tr>
+        <tr><td>8</td><td>2</td><td>–</td><td>–</td><td>–</td><td>–</td><td>1</td><td>1</td><td>✓</td><td>–</td></tr>
+        <tr><td>9–10</td><td>2</td><td>–</td><td>–</td><td>1</td><td>–</td><td>1</td><td>1</td><td>✓</td><td>–</td></tr>
+        <tr><td>11</td><td>2</td><td>–</td><td>–</td><td>1</td><td>1 + 1</td><td>1</td><td>1</td><td>✓</td><td>–</td></tr>
+        <tr><td>12–14</td><td>2</td><td>–</td><td>–</td><td>1</td><td>1 + 1</td><td>1</td><td>1</td><td>✓</td><td>✓</td></tr>
+        <tr><td>15</td><td>3</td><td>–</td><td>–</td><td>1</td><td>1 + 1</td><td>1</td><td>1</td><td>✓</td><td>✓</td></tr>
+        <tr><td>16</td><td>3</td><td>–</td><td>–</td><td>1</td><td>1 + 1</td><td>2</td><td>1</td><td>✓</td><td>✓</td></tr>
+        <tr><td>17–20</td><td>2</td><td>2</td><td>–</td><td>1</td><td>1 + 1</td><td>2</td><td>1</td><td>✓</td><td>✓</td></tr>
+        <tr><td>21</td><td>2</td><td>2</td><td>–</td><td>1</td><td>1 + 1</td><td>2</td><td>2</td><td>✓</td><td>✓</td></tr>
+        <tr><td>22–23</td><td>2</td><td>2</td><td>2</td><td>1</td><td>1 + 1</td><td>2</td><td>2</td><td>✓</td><td>✓</td></tr>
+        <tr><td>24–25</td><td>3</td><td>2</td><td>2</td><td>1</td><td>1 + 1</td><td>2</td><td>2</td><td>✓</td><td>✓</td></tr>
+        <tr><td>26–27</td><td>3</td><td>2</td><td>2</td><td>1</td><td>1 + 1</td><td>3</td><td>2</td><td>✓</td><td>✓</td></tr>
+        <tr><td>28–30</td><td>3</td><td>2</td><td>2</td><td>1</td><td>1 + 1</td><td>3</td><td>3</td><td>✓</td><td>✓</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="win" class="gel-rose">
+  <div class="wrap">
+    <h2>Winning</h2>
+    <ul class="wins">
+      <li><b>Town</b>Every gang, the Serial Killer and the cult are gone.</li>
+      <li><b>A gang</b>It's the only killer left and it equals or outnumbers everyone else.</li>
+      <li><b>Serial Killer</b>Only one other player (or nobody) is left alive.</li>
+      <li><b>Cult</b>Everyone still alive is a Cultist.</li>
+      <li><b>Tanner</b>Gets voted out, which ends the game at once.</li>
+      <li><b>Lovers</b>Last two alive. Surviving lovers also win alongside whichever side one of them is on.</li>
+    </ul>
+    <p>At the end, every role is revealed along with a scene-by-scene replay of every night.</p>
+  </div>
+</section>
+
+<section id="tips">
+  <div class="wrap">
+    <h2>Etiquette</h2>
+    <ul class="steps">
+      <li><b>Night</b>Cameras and mics off, every time. Keep your face still.</li>
+      <li><b>Dead</b>Stay silent until the end, on the call and on stream.</li>
+      <li><b>Phones</b>Never show your screen. Every screen looks the same on purpose.</li>
+      <li><b>Host</b>You can pause, skip a phase, remove a player or start a new game at any time.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p class="made">Made by</p>
+  <div class="logos">
+    <img src="brand/muqecha.png" alt="Muqecha Studios" />
+    <img src="brand/efuye-gela.png" alt="Chewata Awaqi" />
+  </div>
+  <p><a href="https://mafia-call.netlify.app">mafia-call.netlify.app</a></p>
+</footer>
+</body>
+</html>
